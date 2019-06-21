@@ -60,4 +60,8 @@ public class PlayerController : MonoBehaviour
             sr.flipX = false;
         }
     }
+    public void OnOff()
+    {
+        gameObject.SetActive(gameObject.activeSelf ? false : true);
+    }
 }

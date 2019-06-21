@@ -24,6 +24,6 @@ public class PlayerLight : MonoBehaviour
     {
         playerLight.intensity = Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y) ? 
             defaultIntensity + Mathf.Abs(rb.velocity.x) * additionalIntensity : 
-            defaultIntensity + Mathf.Abs(rb.velocity.y) * additionalIntensity;
+            defaultIntensity + Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity;
     }
 }

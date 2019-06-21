@@ -5,13 +5,13 @@ using UnityEngine.Experimental.Rendering.LWRP;
 
 public class LightMode : MonoBehaviour
 {
-    public Light2D mLight;    // Start is called before the first frame update
-    public float defaultIntensity;
+    private Light2D mLight;
+    public float defaultIntensity = 2f;
     public float randomizer;
     [Range(0f, 1f)]
-    public float deltaLight;
+    public float deltaLight = 0.03f;
     [Range(0f, 1f)]
-    public float flickSpeed = 0f;
+    public float flickSpeed = 0.5f;
     
     void Start()
     {
