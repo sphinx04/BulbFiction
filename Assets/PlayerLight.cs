@@ -11,19 +11,21 @@ public class PlayerLight : MonoBehaviour
     public float additionalIntensity;
     private Rigidbody2D rb;
     private Light2D playerLight;
+    private float currentIntensity;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerLight = GetComponent<Light2D>();
+        currentIntensity = defaultIntensity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerLight.intensity = Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y) ? 
-            defaultIntensity + Mathf.Abs(rb.velocity.x) * additionalIntensity : 
-            defaultIntensity + Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity;
+        playerLight.intensity = Mathf.Abs(rb.velocity.x) > Mathf.Abs(rb.velocity.y) ?
+            currentIntensity + Mathf.Abs(rb.velocity.x) * additionalIntensity * currentIntensity :
+            currentIntensity + Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * currentIntensity;
     }
 }
