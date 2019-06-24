@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             float tmpInt = ChangeIntensity();
-            currentEnergy -= tmpInt * 0.01f;
+            currentEnergy -= tmpInt * 0.05f;
             playerLight.intensity = (defaultIntensity + tmpInt) * currentEnergy / DefaultEnergy;
             PlayerControl();
         }
@@ -106,7 +106,11 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
     {
         if (collision.gameObject.tag == "Bulb")
         {
-            collision.gameObject.SetActive(false);
+            collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            collision.gameObject.GetComponent<Light2D>().enabled = false;
+            collision.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            //collision.gameObject.SetActive(false);
             currentEnergy = DefaultEnergy;
         }
     }
