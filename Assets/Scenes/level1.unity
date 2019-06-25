@@ -150,10 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d9a989926b9684aa03c3abb450d477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultIntensity: 2
-  randomizer: 5
-  deltaLight: 0.03
-  flickSpeed: 0.2
+  frequency: 0.1
+  phaseOffset: 0
+  amplitude: 1
 --- !u!114 &27216547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,7 +772,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
+      scalar: 7
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -942,7 +941,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1698,25 +1697,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.49253654
-          inSlope: 0
-          outSlope: 0
+          value: 1
+          inSlope: -3.3500059
+          outSlope: -3.3500059
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33194658
         - serializedVersion: 3
-          time: 0.24592105
-          value: 0.39710772
-          inSlope: -6.200905
+          time: 0.18061492
+          value: 0.26649573
+          inSlope: -0.08256548
           outSlope: -1.4693987
           tangentMode: 1
           weightedMode: 0
-          inWeight: 0.29748097
+          inWeight: 1
           outWeight: 0.12939608
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 0.008163452
           inSlope: -2
           outSlope: -2
           tangentMode: 0
@@ -5480,7 +5479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406028890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.57, y: 0.9200001, z: 0}
+  m_LocalPosition: {x: -7.140001, y: 5.03, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 1}
   m_Children:
   - {fileID: 977339330}
@@ -5782,10 +5781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d9a989926b9684aa03c3abb450d477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultIntensity: 2
-  randomizer: 5
-  deltaLight: 0.03
-  flickSpeed: 0.2
+  frequency: 0.1
+  phaseOffset: 0
+  amplitude: 1
 --- !u!114 &499564823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6271,7 +6269,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
+      scalar: 7
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -6440,7 +6438,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7196,25 +7194,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.49253654
-          inSlope: 0
-          outSlope: 0
+          value: 1
+          inSlope: -3.3500059
+          outSlope: -3.3500059
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33194658
         - serializedVersion: 3
-          time: 0.24592105
-          value: 0.39710772
-          inSlope: -6.200905
+          time: 0.18061492
+          value: 0.26649573
+          inSlope: -0.08256548
           outSlope: -1.4693987
           tangentMode: 1
           weightedMode: 0
-          inWeight: 0.29748097
+          inWeight: 1
           outWeight: 0.12939608
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 0.008163452
           inSlope: -2
           outSlope: -2
           tangentMode: 0
@@ -11466,7 +11464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691772956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.099999, y: 0.9200001, z: 0}
+  m_LocalPosition: {x: 8.49, y: 1.11, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 1}
   m_Children:
   - {fileID: 1745298664}
@@ -11808,7 +11806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834774001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.779999, y: 0.9200001, z: 0}
+  m_LocalPosition: {x: 11.36, y: 5.13, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 1}
   m_Children:
   - {fileID: 549006361}
@@ -12126,7 +12124,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
+      scalar: 7
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -12295,7 +12293,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -13051,25 +13049,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.49253654
-          inSlope: 0
-          outSlope: 0
+          value: 1
+          inSlope: -3.3500059
+          outSlope: -3.3500059
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33194658
         - serializedVersion: 3
-          time: 0.24592105
-          value: 0.39710772
-          inSlope: -6.200905
+          time: 0.18061492
+          value: 0.26649573
+          inSlope: -0.08256548
           outSlope: -1.4693987
           tangentMode: 1
           weightedMode: 0
-          inWeight: 0.29748097
+          inWeight: 1
           outWeight: 0.12939608
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 0.008163452
           inSlope: -2
           outSlope: -2
           tangentMode: 0
@@ -17234,7 +17232,6 @@ GameObject:
   - component: {fileID: 1228331355}
   - component: {fileID: 1228331354}
   - component: {fileID: 1228331353}
-  - component: {fileID: 1228331352}
   - component: {fileID: 1228331356}
   m_Layer: 9
   m_Name: PlayerTriangle
@@ -17243,18 +17240,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1228331352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228331351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e016acd8dfe91b140a24b7d9343df9ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1228331353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18340,7 +18325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434825437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.259998, y: 0.9200001, z: 0}
+  m_LocalPosition: {x: -18.9, y: 5.16, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 1}
   m_Children:
   - {fileID: 1441340449}
@@ -18658,7 +18643,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
+      scalar: 7
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -18827,7 +18812,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -19583,25 +19568,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.49253654
-          inSlope: 0
-          outSlope: 0
+          value: 1
+          inSlope: -3.3500059
+          outSlope: -3.3500059
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33194658
         - serializedVersion: 3
-          time: 0.24592105
-          value: 0.39710772
-          inSlope: -6.200905
+          time: 0.18061492
+          value: 0.26649573
+          inSlope: -0.08256548
           outSlope: -1.4693987
           tangentMode: 1
           weightedMode: 0
-          inWeight: 0.29748097
+          inWeight: 1
           outWeight: 0.12939608
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 0.008163452
           inSlope: -2
           outSlope: -2
           tangentMode: 0
@@ -23528,10 +23513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d9a989926b9684aa03c3abb450d477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultIntensity: 2
-  randomizer: 3
-  deltaLight: 0.03
-  flickSpeed: 0.2
+  frequency: 0.1
+  phaseOffset: 0
+  amplitude: 1
 --- !u!1 &1745298663
 GameObject:
   m_ObjectHideFlags: 0
@@ -23710,7 +23694,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
+      scalar: 7
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -23879,7 +23863,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -24635,25 +24619,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.49253654
-          inSlope: 0
-          outSlope: 0
+          value: 1
+          inSlope: -3.3500059
+          outSlope: -3.3500059
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.33194658
         - serializedVersion: 3
-          time: 0.24592105
-          value: 0.39710772
-          inSlope: -6.200905
+          time: 0.18061492
+          value: 0.26649573
+          inSlope: -0.08256548
           outSlope: -1.4693987
           tangentMode: 1
           weightedMode: 0
-          inWeight: 0.29748097
+          inWeight: 1
           outWeight: 0.12939608
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 0.008163452
           inSlope: -2
           outSlope: -2
           tangentMode: 0
@@ -28508,7 +28492,6 @@ GameObject:
   - component: {fileID: 1802503749}
   - component: {fileID: 1802503748}
   - component: {fileID: 1802503747}
-  - component: {fileID: 1802503746}
   - component: {fileID: 1802503745}
   m_Layer: 9
   m_Name: PlayerCirlce
@@ -28533,18 +28516,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
---- !u!114 &1802503746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802503744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e016acd8dfe91b140a24b7d9343df9ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1802503747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33728,7 +33699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038479340}
   m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -3.2968328, y: 1, z: -31.796875}
+  m_LocalPosition: {x: -3.2968328, y: 200, z: -31.796875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             float tmpInt = ChangeIntensity();
-            currentEnergy -= tmpInt * 0.05f;
+            currentEnergy -= tmpInt * 0.02f;
             playerLight.intensity = (defaultIntensity + tmpInt) * currentEnergy / DefaultEnergy;
             PlayerControl();
         }
