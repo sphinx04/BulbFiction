@@ -92,15 +92,15 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
             extraJumps = extraJumpsValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0 || (Input.GetKeyDown(KeyCode.W)) && extraJumps > 0)
         {
-            Instantiate(PlayerParticles, transform.position, transform.rotation);
+            StartCoroutine(SpawnParticle());
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true || Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGrounded == true)
         {
-            Instantiate(PlayerParticles, transform.position - new Vector3(0f,0.0f,0f), transform.rotation);
+            StartCoroutine(SpawnParticle());
             rb.velocity = Vector2.up * jumpForce;
         }
     }
@@ -116,5 +116,12 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
             //collision.gameObject.SetActive(false);
             currentEnergy = DefaultEnergy;
         }
+    }
+
+    IEnumerator SpawnParticle()
+    { 
+        GameObject temp = Instantiate(PlayerParticles, transform.position, transform.rotation);
+        yield return new WaitForSeconds(3);
+        Destroy(temp);
     }
 }
