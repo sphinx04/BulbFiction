@@ -7,6 +7,7 @@ public class BulbFloater : MonoBehaviour
     // User Inputs
     public float amplitude = 0.5f;
     public float frequency = 1f;
+    private float phaseOffset;
 
     // Position Storage Variables
     Vector3 posOffset = new Vector3();
@@ -15,6 +16,7 @@ public class BulbFloater : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        phaseOffset = Random.Range(- Mathf.PI, Mathf.PI);
         posOffset = transform.position;
     }
 
@@ -22,7 +24,7 @@ public class BulbFloater : MonoBehaviour
     void Update()
     {
         tempPos = posOffset;
-        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency + phaseOffset) * amplitude * Random.Range(1f, 1.2f);
 
         transform.position = tempPos;
     }
