@@ -14,7 +14,7 @@ public class PlayGame : MonoBehaviour
     public GameObject quitParticles;
     public GameObject MenuLights;
 
-    public void StartGame()
+    public void OnButtonPush()
     {
         StartCoroutine(Wait(2f));
     }
