@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float defaultIntensity;
     [Range(0f, 1f)]
     public float additionalIntensity;
+    public GameObject PlayerParticles;
 
 
     private float moveInput;
@@ -93,11 +94,13 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
+            Instantiate(PlayerParticles, transform.position, transform.rotation);
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
         {
+            Instantiate(PlayerParticles, transform.position - new Vector3(0f,0.0f,0f), transform.rotation);
             rb.velocity = Vector2.up * jumpForce;
         }
     }
