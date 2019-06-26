@@ -95,13 +95,28 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
         if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0 || (Input.GetKeyDown(KeyCode.W)) && extraJumps > 0)
         {
             StartCoroutine(SpawnParticle());
-            rb.velocity = Vector2.up * jumpForce;
+            rb.velocity = Vector2.up * jumpForce * rb.gravityScale / Mathf.Abs(rb.gravityScale);
+            //rb.gravityScale = -rb.gravityScale;
             extraJumps--;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true || Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGrounded == true)
         {
             StartCoroutine(SpawnParticle());
-            rb.velocity = Vector2.up * jumpForce;
+            rb.velocity = Vector2.up * jumpForce * rb.gravityScale / Mathf.Abs(rb.gravityScale);
+            //rb.gravityScale = -rb.gravityScale;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow) && extraJumps > 0 || (Input.GetKeyDown(KeyCode.S)) && extraJumps > 0)
+        {
+            StartCoroutine(SpawnParticle());
+            //rb.velocity = Vector2.up * jumpForce;
+            rb.gravityScale = -rb.gravityScale;
+            extraJumps--;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && extraJumps == 0 && isGrounded == true || Input.GetKeyDown(KeyCode.S) && extraJumps == 0 && isGrounded == true)
+        {
+            StartCoroutine(SpawnParticle());
+            //rb.velocity = Vector2.up * jumpForce;
+            rb.gravityScale = -rb.gravityScale;
         }
     }
 
