@@ -25,7 +25,7 @@ public class LightMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mLight.intensity = 1 + Mathf.Sin(Time.fixedTime * Mathf.PI * frequency + phaseOffset) * amplitude;
+        mLight.intensity = 2 + Mathf.Sin(Time.fixedTime * Mathf.PI * frequency + phaseOffset) * amplitude;
 
     }
 }

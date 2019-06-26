@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private Rigidbody2D rb;
     private bool isGrounded;
-    private int extraJumps;
     private Light2D playerLight;
     private float currentIntensity;
     private float currentEnergy;
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        extraJumps = extraJumpsValue;
         rb = GetComponent<Rigidbody2D>();
         playerLight = GetComponent<Light2D>();
         currentIntensity = defaultIntensity;
@@ -48,7 +46,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             float tmpInt = ChangeIntensity();
-            currentEnergy -= tmpInt * 0.02f;
+            currentEnergy -= tmpInt * 0.05f;
             playerLight.intensity = (defaultIntensity + tmpInt) * currentEnergy / DefaultEnergy;
             PlayerControl();
         }
@@ -61,16 +59,6 @@ public class PlayerController : MonoBehaviour
         moveInput = Input.GetAxis("Horizontal");
         
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-        
-
-        if (moveInput > 0)
-        {
-            sr.flipX = true;
-        }
-        else if(moveInput < 0)
-        {
-            sr.flipX = false;
-        }
     }
 
     public void OnOff()
@@ -87,36 +75,13 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
 
     void PlayerControl()
     {
-        if (isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            extraJumps = extraJumpsValue;
+            Jump();
         }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0 || (Input.GetKeyDown(KeyCode.W)) && extraJumps > 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            StartCoroutine(SpawnParticle());
-            rb.velocity = Vector2.up * jumpForce * rb.gravityScale / Mathf.Abs(rb.gravityScale);
-            //rb.gravityScale = -rb.gravityScale;
-            extraJumps--;
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true || Input.GetKeyDown(KeyCode.W) && extraJumps == 0 && isGrounded == true)
-        {
-            StartCoroutine(SpawnParticle());
-            rb.velocity = Vector2.up * jumpForce * rb.gravityScale / Mathf.Abs(rb.gravityScale);
-            //rb.gravityScale = -rb.gravityScale;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && extraJumps > 0 || (Input.GetKeyDown(KeyCode.S)) && extraJumps > 0)
-        {
-            StartCoroutine(SpawnParticle());
-            //rb.velocity = Vector2.up * jumpForce;
-            rb.gravityScale = -rb.gravityScale;
-            extraJumps--;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && extraJumps == 0 && isGrounded == true || Input.GetKeyDown(KeyCode.S) && extraJumps == 0 && isGrounded == true)
-        {
-            StartCoroutine(SpawnParticle());
-            //rb.velocity = Vector2.up * jumpForce;
-            rb.gravityScale = -rb.gravityScale;
+            FlipGravity();
         }
     }
 
@@ -128,7 +93,6 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             collision.gameObject.GetComponent<Light2D>().enabled = false;
             collision.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-            //collision.gameObject.SetActive(false);
             currentEnergy = DefaultEnergy;
         }
     }
@@ -138,5 +102,24 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
         GameObject temp = Instantiate(PlayerParticles, transform.position, transform.rotation);
         yield return new WaitForSeconds(3);
         Destroy(temp);
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            StartCoroutine(SpawnParticle());
+            rb.velocity = Vector2.up * jumpForce * rb.gravityScale / Mathf.Abs(rb.gravityScale);
+        }
+    }
+
+    public void FlipGravity()
+    {
+        if (isGrounded)
+        {
+            StartCoroutine(SpawnParticle());
+            rb.velocity = Vector2.up * jumpForce * 0.5f * rb.gravityScale / Mathf.Abs(rb.gravityScale);
+            rb.gravityScale = -rb.gravityScale;
+        }
     }
 }
