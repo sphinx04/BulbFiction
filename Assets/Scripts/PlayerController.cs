@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)]
     public float additionalIntensity;
     public GameObject PlayerParticles;
+    public Joystick joystick;
 
 
     private float moveInput;
@@ -25,7 +26,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Light2D playerLight;
     private float currentIntensity;
-    private float currentEnergy;
+    [HideInInspector]
+    public float currentEnergy;
 
 
     void Start()
@@ -37,28 +39,19 @@ public class PlayerController : MonoBehaviour
         currentEnergy = DefaultEnergy;
     }
 
-    private void Update()
-    {
-        if (currentEnergy <= 0f)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            float tmpInt = ChangeIntensity();
-            currentEnergy -= tmpInt * 0.05f;
-            playerLight.intensity = (defaultIntensity + tmpInt) * currentEnergy / DefaultEnergy;
-            PlayerControl();
-        }
-    }
-
-    void FixedUpdate()
+    void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
         moveInput = Input.GetAxis("Horizontal");
+        //moveInput = joystick.Horizontal;
         
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+        float tmpInt = ChangeIntensity();
+        currentEnergy -= tmpInt * 0.04f;
+        playerLight.intensity = (defaultIntensity + tmpInt) * currentEnergy / DefaultEnergy;
+        PlayerControl();
     }
 
     public void OnOff()
@@ -85,31 +78,13 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Bulb")
-        {
-            collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            collision.gameObject.GetComponent<Light2D>().enabled = false;
-            collision.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-            currentEnergy = DefaultEnergy;
-        }
-    }
-
-    IEnumerator SpawnParticle()
-    { 
-        GameObject temp = Instantiate(PlayerParticles, transform.position, transform.rotation);
-        yield return new WaitForSeconds(3);
-        Destroy(temp);
-    }
-
     public void Jump()
     {
         if (isGrounded)
         {
-            StartCoroutine(SpawnParticle());
+            GameObject particle = Instantiate(PlayerParticles, transform.position, transform.rotation);
             rb.velocity = Vector2.up * jumpForce * rb.gravityScale / Mathf.Abs(rb.gravityScale);
+            Destroy(particle, 2f);
         }
     }
 
@@ -117,9 +92,10 @@ Mathf.Abs(rb.velocity.y) * 0.5f * additionalIntensity * defaultIntensity;
     {
         if (isGrounded)
         {
-            StartCoroutine(SpawnParticle());
+            GameObject particle = Instantiate(PlayerParticles, transform.position, transform.rotation);
             rb.velocity = Vector2.up * jumpForce * 0.5f * rb.gravityScale / Mathf.Abs(rb.gravityScale);
             rb.gravityScale = -rb.gravityScale;
+            Destroy(particle, 2f);
         }
     }
 }

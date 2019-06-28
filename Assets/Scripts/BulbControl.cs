@@ -10,6 +10,7 @@ public class BulbControl : MonoBehaviour
     [Range(0f, 2f)]
     public float additionalIntensity;
     public float flickingSpeed = 1;
+    public GameObject bulbParticles;
     private Light2D bulbLight;
     private float currentIntensity;
 
@@ -25,5 +26,16 @@ public class BulbControl : MonoBehaviour
     {
         currentIntensity = defaultIntensity;
         bulbLight.intensity = currentIntensity + additionalIntensity * Mathf.Sin(Time.time * flickingSpeed);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("bulb");
+            GameObject particle = Instantiate(bulbParticles, transform.position, transform.rotation);
+            collision.gameObject.GetComponent<PlayerController>().currentEnergy = collision.gameObject.GetComponent<PlayerController>().DefaultEnergy;
+            Destroy(particle, 5f);
+            Destroy(gameObject);
+        }
     }
 }
