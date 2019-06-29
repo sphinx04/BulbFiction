@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private float currentIntensity;
     [HideInInspector]
     public float currentEnergy;
+    private Vector2 up;
+    private Vector2 fixedUp;
 
 
     void Start()
@@ -41,23 +43,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
+        //moveInput = joystick.Horizontal * .75f;
         moveInput = Input.GetAxis("Horizontal");
-        //moveInput = joystick.Horizontal;
-        
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
+        up = new Vector2(moveInput * speed, rb.velocity.y);
+        rb.velocity = Vector2.Lerp(new Vector2(moveInput * speed - 2f, rb.velocity.y), new Vector2(moveInput * speed + 2f, rb.velocity.y), 1);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         float tmpInt = ChangeIntensity();
         currentEnergy -= tmpInt * 0.04f;
         playerLight.intensity = (defaultIntensity + tmpInt) * currentEnergy / DefaultEnergy;
         PlayerControl();
     }
 
-    public void OnOff()
-    {
-        gameObject.SetActive(gameObject.activeSelf ? false : true);
-    }
+    //private void FixedUpdate()
+    //{
+    //    fixedUp = new Vector2(moveInput * speed, rb.velocity.y);
+    //    rb.velocity = Vector2.Lerp(up, fixedUp, 1f);
+    //}
 
     float ChangeIntensity()
     {

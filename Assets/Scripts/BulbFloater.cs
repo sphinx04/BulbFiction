@@ -24,7 +24,7 @@ public class BulbFloater : MonoBehaviour
     void Update()
     {
         tempPos = posOffset;
-        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency + phaseOffset) * amplitude * Random.Range(1f, 1.2f);
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency + phaseOffset) * amplitude;
 
         transform.position = tempPos;
     }
