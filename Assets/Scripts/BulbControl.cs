@@ -32,9 +32,8 @@ public class BulbControl : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("bulb");
-            GameObject particle = Instantiate(bulbParticles, transform.position, transform.rotation);
-            collision.gameObject.GetComponent<PlayerController>().currentEnergy = collision.gameObject.GetComponent<PlayerController>().DefaultEnergy;
-            Destroy(particle, 5f);
+            collision.gameObject.GetComponent<CharacterController2D>().currentEnergy = collision.gameObject.GetComponent<CharacterController2D>().DefaultEnergy;
+            Destroy(Instantiate(bulbParticles, transform.position, transform.rotation), 5f);
             Destroy(gameObject);
         }
     }
