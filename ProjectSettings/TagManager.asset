@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bulb
   - Ground
+  - PlayerCube
   layers:
   - Default
   - TransparentFX
