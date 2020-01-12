@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bulb
-  - Ground
-  - PlayerCube
+  - Through
+  - Coin
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -16,11 +16,11 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
   - Player
-  - 
-  - 
-  - 
+  - Obstacle
+  - Bulbs
+  - coins
+  - Pafticles
   - 
   - 
   - 
@@ -42,14 +42,14 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 3582277581
+    uniqueID: 1611635347
+    locked: 0
+  - name: Background Tiles
+    uniqueID: 27408953
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 1442553051
-    locked: 0
-  - name: Text
-    uniqueID: 1504343647
+  - name: UI
+    uniqueID: 4131415357
     locked: 0
