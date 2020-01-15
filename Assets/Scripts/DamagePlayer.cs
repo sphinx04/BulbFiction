@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
@@ -20,7 +17,7 @@ public class DamagePlayer : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("level");
+                collision.gameObject.GetComponent<PlayerManager>().Death();
             }
         }
     }

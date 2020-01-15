@@ -9,24 +9,16 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float runSpeed = 40f;
 
-	float horizontalMove = 0f;
-	bool jump = false;
-	bool crouch = false;
+	float horizontalMove;
+	bool jump;
 
     private void Start()
     {
         Application.targetFrameRate = 60;
     }
     // Update is called once per frame
-    void Update () {
-
-        //horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        //horizontalMove = joystick.Horizontal * runSpeed;
-
-
-
-
-
+    void Update ()
+    {
         if (Input.GetAxisRaw("Horizontal") > 0f || CrossPlatformInputManager.GetAxis("Horizontal") > .2f)
         {
             horizontalMove = runSpeed;
@@ -40,22 +32,13 @@ public class PlayerMovement : MonoBehaviour {
             horizontalMove = 0;
         }
 
-
-
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
         }
 
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+
     }
-
-
-    //void FixedUpdate ()
-    //{
-    //	// Move our character
-    //	controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-    //	jump = false;
-    //}
 }

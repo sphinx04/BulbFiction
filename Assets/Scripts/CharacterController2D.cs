@@ -6,10 +6,9 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-    [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
+    [SerializeField] private bool m_AirControl;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
-    public CinemachineFramingTransposer CCamera;
 
     private Animator animator;
     public ParticleSystem particles;
@@ -17,7 +16,7 @@ public class CharacterController2D : MonoBehaviour
     //public Animator animator;
 
     const float k_GroundedRadius = 0.2f; // Radius of the overlap circle to determine if grounded
-    private bool m_Grounded;            // Whether or not the player is grounded.
+    public bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
@@ -32,6 +31,10 @@ public class CharacterController2D : MonoBehaviour
 
     public BoolEvent OnCrouchEvent;
 
+
+    public float energy = 100f;
+    public float energyCost = 1f;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -42,6 +45,14 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+    }
+
+    private void Update()
+    {
+        if(energy < 0)
+        {
+            gameObject.GetComponent<PlayerManager>().Death();
+        }
     }
 
     private void FixedUpdate()
@@ -67,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool jump)
     {
         var emission = particles.emission;
 
@@ -99,6 +110,8 @@ public class CharacterController2D : MonoBehaviour
                 animator.SetTrigger("Run");
                 animator.ResetTrigger("Idle");
                 animator.ResetTrigger("Jump");
+                energy -= energyCost * Time.deltaTime;
+                Debug.Log(energy);
             }
             else
             {
@@ -129,6 +142,8 @@ public class CharacterController2D : MonoBehaviour
         {
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            energy -= energyCost * 5;
+            Debug.Log(energy);
         }
     }
 

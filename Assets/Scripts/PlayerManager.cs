@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class PlayerManager : MonoBehaviour
             Destroy(collision.gameObject);
             lifeIndicator.GetComponent<Animator>().SetTrigger(lifeAmount.ToString());
         }
+    }
+
+    public void Death()
+    {
+        SceneManager.LoadScene("level");
     }
 
 }
