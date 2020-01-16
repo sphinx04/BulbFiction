@@ -36,6 +36,14 @@ public class PlayerManager : MonoBehaviour
             Destroy(collision.gameObject);
             lifeIndicator.GetComponent<Animator>().SetTrigger(lifeAmount.ToString());
         }
+        if (collision.gameObject.CompareTag("Bulb"))
+        {
+            gameObject.GetComponent<CharacterController2D>().energy = 100;
+            coinParticle.gameObject.transform.position = collision.gameObject.transform.position;
+            Instantiate(coinParticle);
+            coinParticle.Emit(2000);
+            Destroy(collision.gameObject);
+        }
     }
 
     public void Death()

@@ -7,6 +7,7 @@ TagManager:
   - Through
   - Coin
   - Heart
+  - Bulb
   layers:
   - Default
   - TransparentFX
