@@ -9,7 +9,8 @@ public class SetRadius : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        OuterRadius = 1f + gameObject.transform.parent.GetComponent<CharacterController2D>().energy / 10f;
+        OuterRadius = 1f + gameObject.transform.parent.GetComponent<CharacterController2D>().currEnergy /
+            gameObject.transform.parent.GetComponent<CharacterController2D>().energy * 10f;
         
         InnerRadius = OuterRadius / radiusMultiplyer;
 

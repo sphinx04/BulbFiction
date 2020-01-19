@@ -15,7 +15,7 @@ public class CharacterController2D : MonoBehaviour
 
     //public Animator animator;
 
-    const float k_GroundedRadius = 0.2f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = 0.1f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -34,9 +34,11 @@ public class CharacterController2D : MonoBehaviour
 
     public float energy = 100f;
     public float energyCost = 1f;
+    public float currEnergy;
 
     private void Awake()
     {
+        currEnergy = energy;
         animator = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -49,7 +51,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        if(energy < 0)
+        if(currEnergy < 0)
         {
             gameObject.GetComponent<PlayerManager>().Death();
         }
@@ -110,8 +112,7 @@ public class CharacterController2D : MonoBehaviour
                 animator.SetTrigger("Run");
                 animator.ResetTrigger("Idle");
                 animator.ResetTrigger("Jump");
-                energy -= energyCost * Time.deltaTime;
-                Debug.Log(energy);
+                currEnergy -= energyCost * Time.deltaTime;
             }
             else
             {
@@ -122,7 +123,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
         // If the player should jump...
-        if (jump)
+        if (jump && m_Grounded)
         {
             // Add a vertical force to the player.
             Jump();
@@ -141,9 +142,9 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded)
         {
             m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            energy -= energyCost * 5;
-            Debug.Log(energy);
+            //m_Rigidbody2D.AddRelativeForce(new Vector2(0f, m_JumpForce));
+            m_Rigidbody2D.velocity = new Vector2(0, 20);
+            currEnergy -= energyCost;
         }
     }
 

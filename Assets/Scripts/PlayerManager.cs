@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     public Vector3 coinCillectOffset;
     int coinAmount = 0;
     public int lifeAmount = 3;
+    public ParticleSystem deathParticles;
+    public GameObject HUD;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Bulb"))
         {
-            gameObject.GetComponent<CharacterController2D>().energy = 100;
+            gameObject.GetComponent<CharacterController2D>().currEnergy = gameObject.GetComponent<CharacterController2D>().energy;
             coinParticle.gameObject.transform.position = collision.gameObject.transform.position;
             Instantiate(coinParticle);
             coinParticle.Emit(2000);
@@ -48,6 +50,16 @@ public class PlayerManager : MonoBehaviour
 
     public void Death()
     {
+        deathParticles.gameObject.transform.position = gameObject.transform.position;
+        Instantiate(deathParticles);
+        heartParticle.Emit(2000);
+        HUD.SetActive(false);
+        StartCoroutine(CourDeath(1.0f));
+    }
+
+    IEnumerator CourDeath(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene("level");
     }
 
